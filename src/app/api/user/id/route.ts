@@ -4,10 +4,10 @@ import { NextRequest, NextResponse } from "next/server";
 
 export const POST = async (
   req: NextRequest,
-  context: { params: { id: string }}
+  context: { params: Record<string, string>}
 ) => {
   try {
-    const { id } = context.params;
+    const id = context.params.id as string;
     const formData = await req.formData();
 
     const name = formData.get("name") as string;
