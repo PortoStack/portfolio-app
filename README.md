@@ -104,4 +104,4 @@ Click the button below to instantly deploy a copy of this project to your Vercel
 3. NEXTAUTH_URL: Ensure the NEXTAUTH_URL variable in Vercel is set to your production domain (e.g., https://my-portfolio-app.vercel.app).
 
 ## License
-This project is licensed under the MIT License - see the dedicated [LICENSE](LICENSE.md) file for details.
+This project is licensed under the MIT License - see the dedicated [LICENSE](LICENSE) file for details.
