@@ -32,7 +32,7 @@ export const POST = async (req: NextRequest) => {
     const link = formData.get("link") as string;
     const file = formData.get("image") as File;
 
-    const imageUrl = await uploadImage(file, "cert");
+    const imageUrl = await uploadImage(file, "certs");
 
     await prisma.certifications.create({
       data: {

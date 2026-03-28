@@ -32,7 +32,7 @@ export const GET = async () => {
     console.error(err);
     return NextResponse.json(
       { message: `Internal Server error: ${err}` },
-      { status: 500 }
+      { status: 500 },
     );
   }
 };
@@ -48,41 +48,32 @@ export const POST = async (req: NextRequest) => {
     const status = formData.get("status") as $Enums.project_status;
 
     const projectTechnologies = JSON.parse(
-      formData.get("projectTechnologies") as string
+      formData.get("projectTechnologies") as string,
     );
 
     const projectId = uuidv7();
 
-    await prisma.$transaction([
-      prisma.projects.create({
-        data: {
-          id: projectId,
-          title,
-          description,
-          github,
-          link,
-          status,
-        },
-      }),
-
-      prisma.project_technologies.createMany({
-        data: projectTechnologies.map((tech: string) => ({
-          id: uuidv7(),
-          project_id: projectId,
-          tech,
-        })),
-      }),
-    ]);
+    await prisma.projects.create({
+      data: {
+        id: projectId,
+        title,
+        description,
+        github,
+        link,
+        status,
+        project_technologies: projectTechnologies,
+      },
+    });
 
     return NextResponse.json(
       { message: "Created Project Success" },
-      { status: 201 }
+      { status: 201 },
     );
   } catch (err) {
     console.error(err);
     return NextResponse.json(
       { message: `Internal Server error: ${err}` },
-      { status: 500 }
+      { status: 500 },
     );
   }
 };

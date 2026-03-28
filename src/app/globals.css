@@ -1,7 +1,18 @@
 @import "tailwindcss";
 
 @theme {
-  --color-background: #2d2d2d;
-  --color-foreground: #2d2d2d;
-  --color-corn-flower: #6495ed;
+  --color-primary: #5482b4;
+  --color-surface: #181818;
+  --color-accent: #c2e8ff;
+
+  --text-base: 14pt;
+  --text-detail: 10pt;
+}
+
+body {
+  @apply text-base;
+}
+
+* {
+  @apply font-mono;
 }
