@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import Providers from "./providers";
-import Footer from "@/components/footer";
+import PageTransition from "@/components/PageTranstion";
+import Sidebar from "@/components/Sidebar";
 import "./globals.css";
-
 
 export const metadata: Metadata = {
   title: "Portofolio - PortoStack",
@@ -16,12 +16,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="bg-white/5">
+      <body>
         <Providers>
-          <main className="relative">
-            {children}
-          </main>
-          <Footer />
+          <div className="flex w-screen h-screen overflow-hidden bg-surface">
+            <Sidebar />
+            <PageTransition>
+              <main className="py-24 pr-16">{children}</main>
+            </PageTransition>
+          </div>
         </Providers>
       </body>
     </html>
