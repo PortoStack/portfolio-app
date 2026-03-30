@@ -33,11 +33,26 @@ export const AboutSkelaton = () => {
 };
 
 export const EducationSkelaton = () => {
-  return <div>EducationSkelaton</div>;
+  return <div></div>;
 };
 
 export const SkillSkelaton = () => {
-  return <div>SkillSkelaton</div>;
+  return (
+    <>
+      {[...Array(4)].map((_, i) => (
+        <div key={i} className="grid gap-4">
+          <div className="animate-pulse h-8 w-1/3 bg-gray-50/10 rounded flex" />
+          <div className="flex gap-4">
+            {[...Array(8)].map((_, j) => (
+              <div key={j}>
+                <div className="nimate-pulse h-10 w-10 bg-gray-50/10 rounded-full flex" />
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+    </>
+  );
 };
 
 export const ProjectSkelaton = () => {

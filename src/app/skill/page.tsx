@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import BrandIcon from "@/components/BrandIcon";
 import { useSkill } from "@/hook/useSkill";
 import { SkillSkelaton } from "@/components/Skelaton";
+import { SkillSchemaType } from "@/schema/skill";
 
 export default function Skill() {
   const { data, isLoading } = useSkill();
