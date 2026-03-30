@@ -16,9 +16,9 @@ export default function PageTransition({
       <motion.div
         className="w-full"
         key={pathname}
-        initial={{ y: 20, opacity: 0 }}
+        initial={{ y: 60, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        exit={{ y: -20, opacity: 0 }}
+        exit={{ y: 60, opacity: 0 }}
         transition={{ ease: "easeInOut", duration: 0.5 }}
       >
         <FrozenRoute>{children}</FrozenRoute>

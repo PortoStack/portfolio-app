@@ -4,6 +4,8 @@ import Link from "next/link";
 import { useProfile } from "@/hook/useProfile";
 import { usePathname } from "next/navigation";
 import BrandIcon from "./BrandIcon";
+import Loading from "./Loading";
+import { SidebarSkelaton } from "./Skelaton";
 
 export const items = [
   { name: "About", href: "/" },
@@ -16,7 +18,7 @@ export const items = [
 
 export default function Sidebar() {
   const pathname = usePathname();
-  const { data: profile, isLoading, isError } = useProfile();
+  const { data: profile, isLoading } = useProfile();
 
   const socials = [
     {
@@ -39,10 +41,14 @@ export default function Sidebar() {
   return (
     <aside className="bg-surface min-w-1/2 px-16 py-24">
       <div className="text-white h-full flex flex-col justify-between">
-        <div>
-          <h1 className="text-5xl">{profile?.title}</h1>
-          <h3 className="text-3xl">{profile?.name}</h3>
-        </div>
+        {isLoading ? (
+          <SidebarSkelaton />
+        ) : (
+          <div>
+            <h1 className="text-5xl">{profile?.title}</h1>
+            <h3 className="text-3xl">{profile?.name}</h3>
+          </div>
+        )}
         <ul className="grid gap-6">
           {items.map((item) => {
             const isActive = pathname === item.href;
