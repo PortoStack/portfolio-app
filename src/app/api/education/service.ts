@@ -26,7 +26,7 @@ export class EducationService {
         school: payload.school,
         started_at: payload.startedAt,
         ended_at: payload.endedAt,
-        detail: payload.detail,
+        details: payload.details,
       },
     });
 }

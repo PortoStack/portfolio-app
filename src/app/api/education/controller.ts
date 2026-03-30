@@ -24,7 +24,7 @@ export class EducationController {
         school: formData.get("school") as string,
         startedAt: new Date(formData.get("startAt") as string),
         endedAt: new Date(formData.get("endedAt") as string),
-        detail: formData.get("detail") as string,
+        details: formData.get("details") as string,
       };
 
       const newEducation = this.service.create(payload);

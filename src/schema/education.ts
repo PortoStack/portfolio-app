@@ -5,7 +5,7 @@ const commonFields = {
   school: z.string(),
   startedAt: z.date(),
   endedAt: z.date(),
-  detail: z.string().optional(),
+  details: z.string().optional(),
 };
 
 export const baseEducationSchema = z.object({
