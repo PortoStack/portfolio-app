@@ -4,7 +4,6 @@ import Link from "next/link";
 import { useProfile } from "@/hook/useProfile";
 import { usePathname } from "next/navigation";
 import BrandIcon from "./BrandIcon";
-import Loading from "./Loading";
 import { SidebarSkelaton } from "./Skelaton";
 
 export const items = [
