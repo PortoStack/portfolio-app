@@ -22,7 +22,7 @@ export class EducationController {
       const payload: CreateEducationSchemaType = {
         degree: formData.get("degree") as string,
         school: formData.get("school") as string,
-        startAt: new Date(formData.get("startAt") as string),
+        startedAt: new Date(formData.get("startAt") as string),
         endedAt: new Date(formData.get("endedAt") as string),
         detail: formData.get("detail") as string,
       };
