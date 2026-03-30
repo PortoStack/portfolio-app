@@ -19,7 +19,7 @@ export const createProfileSchema = z.object({
 });
 
 export const updateProfileSchema = z
-  .object({ ...commonFields, resume: z.instanceof(File).optional() })
+  .object({ ...commonFields, resumeFile: z.instanceof(File).optional() })
   .partial();
 
 // type of profile

@@ -1,9 +1,10 @@
 "use client";
 
-import { useProfile } from "@/hook/useProfile";
-import Image from "next/image";
 import Link from "next/link";
+import { useProfile } from "@/hook/useProfile";
 import { usePathname } from "next/navigation";
+import BrandIcon from "./BrandIcon";
+import { SidebarSkelaton } from "./Skelaton";
 
 export const items = [
   { name: "About", href: "/" },
@@ -16,22 +17,22 @@ export const items = [
 
 export default function Sidebar() {
   const pathname = usePathname();
-  const { data: profile, isLoading, isError } = useProfile();
+  const { data: profile, isLoading } = useProfile();
 
   const socials = [
     {
       platform: "Facebook",
-      icon: "https://cdn.simpleicons.org/facebook/fff",
+      icon: "facebook",
       url: "",
     },
     {
       platform: "Github",
-      icon: "https://cdn.simpleicons.org/github/fff",
+      icon: "github",
       url: "",
     },
     {
       platform: "Instagram",
-      icon: "https://cdn.simpleicons.org/instagram/fff",
+      icon: "instagram",
       url: "",
     },
   ];
@@ -39,23 +40,27 @@ export default function Sidebar() {
   return (
     <aside className="bg-surface min-w-1/2 px-16 py-24">
       <div className="text-white h-full flex flex-col justify-between">
-        <div>
-          <h1 className="text-5xl">{profile?.title}</h1>
-          <h3 className="text-3xl">{profile?.name}</h3>
-        </div>
+        {isLoading ? (
+          <SidebarSkelaton />
+        ) : (
+          <div>
+            <h1 className="text-5xl">{profile?.title}</h1>
+            <h3 className="text-3xl">{profile?.name}</h3>
+          </div>
+        )}
         <ul className="grid gap-6">
           {items.map((item) => {
             const isActive = pathname === item.href;
 
             return (
-              <li key={item.href} className="flex items-center gap-4">
-                <div
-                  className={`${isActive ? "bg-primary w-40" : "bg-white w-20"} h-0.5 rounded-full transition-all duration-500 delay-100`}
-                />
+              <li key={item.href}>
                 <Link
                   href={item.href}
-                  className={`${isActive ? "text-primary" : "text-white"} transition-colors duration-500 delay-100`}
+                  className={`${isActive ? "text-primary" : "text-white"} transition-colors duration-500 delay-100 flex items-center gap-4`}
                 >
+                  <div
+                    className={`${isActive ? "bg-primary w-40" : "bg-white w-20"} h-0.5 rounded-full transition-all duration-500 delay-100`}
+                  />
                   {item.name}
                 </Link>
               </li>
@@ -66,12 +71,9 @@ export default function Sidebar() {
           {socials.slice(0, 3).map((social) => (
             <div key={social.platform}>
               <Link href={social.url} target="__blank">
-                <Image
-                  src={social.icon}
-                  alt={social.platform}
-                  width={36}
-                  height={36}
-                  className="hover:opacity-100 opacity-50 transition-all"
+                <BrandIcon
+                  className="w-8 h-8 fill-white hover:fill-primary transition-colors duration-300"
+                  iconKey={social.icon}
                 />
               </Link>
             </div>

@@ -1,9 +1,15 @@
 @import "tailwindcss";
 
+:root {
+  --primary: #5482b4;
+  --surface: #181818;
+  --accent: #c2e8ff;
+}
+
 @theme {
-  --color-primary: #5482b4;
-  --color-surface: #181818;
-  --color-accent: #c2e8ff;
+  --color-primary: var(--primary);
+  --color-surface: var(--surface);
+  --color-accent: var(--accent);
 
   --text-base: 14pt;
   --text-detail: 10pt;
@@ -15,4 +21,9 @@ body {
 
 * {
   @apply font-mono;
+}
+
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: var(--surface) var(--surface);
 }

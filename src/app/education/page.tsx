@@ -1,4 +1,7 @@
-import momet from "moment";
+"use client";
+
+import dayjs from "dayjs";
+import { AnimatePresence, motion } from "framer-motion";
 
 export default function Education() {
   const educations = [
@@ -30,23 +33,32 @@ export default function Education() {
   return (
     <div className="text-white w-full flex flex-col gap-4">
       <h1 className="text-5xl">Education</h1>
-      <div className="grid gap-8">
-        {educations.map((edu) => (
-          <div
-            key={edu.school}
-            className="border-white border-l-2 hover:border-primary hover:bg-primary/10 group transition-colors pl-8 p-4"
-          >
-            <h2 className="group-hover:text-primary transition-colors text-2xl">
-              {edu.school}
-            </h2>
-            <h3>{edu.degree}</h3>
-            <div>
-              {edu.startAt} -{" "}
-              {edu.endedAt < momet().year() ? edu.endedAt : "Parent"}
-            </div>
-          </div>
-        ))}
-      </div>
+      <AnimatePresence mode="wait">
+        <div className="grid gap-8">
+          {educations.map((edu, idx) => (
+            <motion.div
+              key={edu.school}
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{
+                ease: "easeInOut",
+                duration: 0.5,
+                delay: idx * 0.25,
+              }}
+              className="border-white border-l-2 hover:border-primary hover:bg-primary/10 group transition-colors pl-8 p-4"
+            >
+              <h2 className="group-hover:text-primary transition-colors text-2xl">
+                {edu.school}
+              </h2>
+              <h3>{edu.degree}</h3>
+              <div>
+                {edu.startAt} -{" "}
+                {edu.endedAt < dayjs().year() ? edu.endedAt : "Parent"}
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </AnimatePresence>
     </div>
   );
 }

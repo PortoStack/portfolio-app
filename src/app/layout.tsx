@@ -21,7 +21,7 @@ export default function RootLayout({
           <div className="flex w-screen h-screen overflow-hidden bg-surface">
             <Sidebar />
             <PageTransition>
-              <main className="py-24 pr-16">{children}</main>
+              <main className="py-24 pr-16 h-screen">{children}</main>
             </PageTransition>
           </div>
         </Providers>
