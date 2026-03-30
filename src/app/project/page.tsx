@@ -1,37 +1,50 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
+import { siGithub } from "simple-icons";
+import { $Enums } from "@prisma/client";
+import BrandIcon from "@/components/BrandIcon";
 
 export default function Project() {
-  const projects = [
+  const projects: Array<
+    {
+      id: string;
+      title: string;
+      description: string;
+      status: $Enums.project_status;
+      demo_url: string;
+      github: string;
+    } & {
+      technology: Array<{ tech: string; icon: string }>;
+    }
+  > = [
     {
       id: "1",
       title: "Ecommerce App (HOME STYLE)",
-      description: "",
-      status: "completed",
-      image: "/assets/images/image.png",
+      description:
+        "This project is a simple e-commerce website built with React, Vite, and TailwindCSS. It is currently under development and not yet fully responsive.",
+      status: $Enums.project_status.completed,
       github: "https://github.com/PortoStack/ecommerce-site",
-      demo: "https://portostack.github.io/ecommerce-site/",
+      demo_url: "https://portostack.github.io/ecommerce-site/",
       technology: [
-        { tech: "React.js", icon: "https://cdn.simpleicons.org/react" },
+        { tech: "React.js", icon: "react" },
         {
           tech: "Tailwind CSS",
-          icon: "https://cdn.simpleicons.org/tailwindcss",
+          icon: "tailwindcss",
         },
       ],
     },
   ];
 
-  const statusColor = (status: string) => {
+  const statusColor = (status: $Enums.project_status) => {
     const colors: Record<string, string> = {
       completed:
         "bg-green-400/20 text-green-400 border-1 border-green-400 cursor-pointer",
       in_progress:
         "bg-orange-400/20 text-orange-400 border-1 border-orange-400 cursor-not-allowed",
-      planning:
+      draft:
         "bg-gray-400/20 text-gray-400 border-1 border-gray-400 cursor-not-allowed",
-      paused:
+      archived:
         "bg-red-400/20 text-red-400 border-1 border-red-400 cursor-not-allowed",
     };
 
@@ -42,64 +55,58 @@ export default function Project() {
     const txts: Record<string, string> = {
       completed: "Demo",
       in_progress: "In Progress",
-      planning: "Planning",
-      paused: "Paused",
+      draft: "Draft",
+      archived: "Archived",
     };
 
     return txts[status] as string;
   };
 
   return (
-    <div className="text-white grid gap-12">
+    <div className="text-white flex flex-col gap-12 h-full">
       <h1 className="text-5xl">Projects</h1>
-      <div className="">
+      <div className="flex-1 gap-8 overflow-y-auto max-h-full custom-scrollbar">
         {projects.map((project) => (
-          <div key={project.id} className="relative">
-            <Image
-              src={project.image}
-              width={1200}
-              height={1200}
-              alt="No Image"
-            />
-            <div className="absolute top-0 h-full w-full opacity-0 hover:opacity-100 hover:bg-surface/80 transition-all">
-              <h2 className="text-4xl absolute top-1/3 left-1/2 -translate-x-1/2 text-center w-full">
-                {project.title}
-              </h2>
-              <div className="absolute bottom-5 left-5 flex gap-4">
+          <div
+            key={project.id}
+            className="grid gap-4 w-full border-b-2 border-white p-4 group hover:bg-primary/10 hover:border-primary transition-colors duration-300"
+          >
+            <h2 className="text-3xl group-hover:text-primary transition-colors duration-300">
+              {project.title}
+            </h2>
+            <div dangerouslySetInnerHTML={{ __html: project.description }} />
+            <div className="flex justify-between w-full">
+              <div className="flex gap-4">
+                {project.technology.map((technology) => (
+                  <div key={technology.tech}>
+                    <BrandIcon
+                      className="w-8 h-8 fill-white"
+                      iconKey={technology.icon}
+                    />
+                  </div>
+                ))}
+              </div>
+              <div className="flex gap-4">
                 <Link
                   href={project.github}
                   target="__blank"
-                  className="bg-surface px-4 py-2 rounded-lg flex gap-2 items-center"
+                  className="bg-surface px-2 py-0.5 rounded-lg flex gap-2 items-center"
                 >
-                  <Image
-                    src="https://cdn.simpleicons.org/github/fff"
-                    height={16}
-                    width={16}
-                    alt="No icon"
+                  <div
+                    className="w-4 h-4 fill-white"
+                    dangerouslySetInnerHTML={{ __html: siGithub.svg }}
                   />
                   Github
                 </Link>
                 <Link
-                  href={project.demo}
+                  href={project.demo_url}
                   target="__blank"
-                  className={`${statusColor(project.status)} px-4 py-2 rounded-lg`}
+                  className={`${statusColor(project.status)} px-2 py-0.5 rounded-lg`}
                   aria-disabled={project.status !== "completed"}
                   tabIndex={project.status !== "completed" ? -1 : undefined}
                 >
                   {statusText(project.status)}
                 </Link>
-              </div>
-              <div className="absolute bottom-5 right-5 flex gap-4">
-                {project.technology.map((technology) => (
-                  <div key={technology.tech}>
-                    <Image
-                      src={`${technology.icon}/fff`}
-                      width={32}
-                      height={32}
-                      alt="No icon"
-                    />
-                  </div>
-                ))}
               </div>
             </div>
           </div>

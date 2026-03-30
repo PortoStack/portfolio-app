@@ -1,7 +1,7 @@
 "use client";
 
+import BrandIcon from "@/components/BrandIcon";
 import { useSkill } from "@/hook/useSkill";
-import Image from "next/image";
 
 export default function Skill() {
   const { data } = useSkill();
@@ -19,13 +19,10 @@ export default function Skill() {
                   key={technology.tech}
                   className="flex flex-col items-center justify-between"
                 >
-                  <Image
-                    src={`${technology.icon}/fff`}
-                    width={48}
-                    height={48}
-                    alt="No Icon"
-                  ></Image>
-                  {/* <h3>{technology.tech}</h3> */}
+                  <BrandIcon
+                    className="w-8 h-8 fill-white"
+                    iconKey={technology.icon}
+                  />
                 </div>
               ))}
             </div>

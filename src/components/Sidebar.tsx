@@ -1,9 +1,9 @@
 "use client";
 
-import { useProfile } from "@/hook/useProfile";
-import Image from "next/image";
 import Link from "next/link";
+import { useProfile } from "@/hook/useProfile";
 import { usePathname } from "next/navigation";
+import BrandIcon from "./BrandIcon";
 
 export const items = [
   { name: "About", href: "/" },
@@ -21,17 +21,17 @@ export default function Sidebar() {
   const socials = [
     {
       platform: "Facebook",
-      icon: "https://cdn.simpleicons.org/facebook/fff",
+      icon: "facebook",
       url: "",
     },
     {
       platform: "Github",
-      icon: "https://cdn.simpleicons.org/github/fff",
+      icon: "github",
       url: "",
     },
     {
       platform: "Instagram",
-      icon: "https://cdn.simpleicons.org/instagram/fff",
+      icon: "instagram",
       url: "",
     },
   ];
@@ -66,12 +66,9 @@ export default function Sidebar() {
           {socials.slice(0, 3).map((social) => (
             <div key={social.platform}>
               <Link href={social.url} target="__blank">
-                <Image
-                  src={social.icon}
-                  alt={social.platform}
-                  width={36}
-                  height={36}
-                  className="hover:opacity-100 opacity-50 transition-all"
+                <BrandIcon
+                  className="w-8 h-8 fill-white hover:fill-primary transition-colors duration-300"
+                  iconKey={social.icon}
                 />
               </Link>
             </div>
