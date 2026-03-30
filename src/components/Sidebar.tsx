@@ -48,14 +48,14 @@ export default function Sidebar() {
             const isActive = pathname === item.href;
 
             return (
-              <li key={item.href} className="flex items-center gap-4">
-                <div
-                  className={`${isActive ? "bg-primary w-40" : "bg-white w-20"} h-0.5 rounded-full transition-all duration-500 delay-100`}
-                />
+              <li key={item.href}>
                 <Link
                   href={item.href}
-                  className={`${isActive ? "text-primary" : "text-white"} transition-colors duration-500 delay-100`}
+                  className={`${isActive ? "text-primary" : "text-white"} transition-colors duration-500 delay-100 flex items-center gap-4`}
                 >
+                  <div
+                    className={`${isActive ? "bg-primary w-40" : "bg-white w-20"} h-0.5 rounded-full transition-all duration-500 delay-100`}
+                  />
                   {item.name}
                 </Link>
               </li>
