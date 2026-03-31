@@ -8,7 +8,7 @@ export default function Home() {
 
   return (
     <div className="text-white grid gap-6">
-      <h1 className="text-5xl">About</h1>
+      <h1 className="text-3xl lg:text-5xl">About</h1>
       {isLoading ? (
         <AboutSkelaton />
       ) : (

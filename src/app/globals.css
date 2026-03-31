@@ -4,6 +4,8 @@
   --primary: #5482b4;
   --surface: #181818;
   --accent: #c2e8ff;
+
+  --base: 14pt;
 }
 
 @theme {
@@ -11,12 +13,11 @@
   --color-surface: var(--surface);
   --color-accent: var(--accent);
 
-  --text-base: 14pt;
-  --text-detail: 10pt;
+  --text-base: var(--base);
 }
 
 body {
-  @apply text-base;
+  font-size: var(--base);
 }
 
 * {
@@ -26,4 +27,49 @@ body {
 .custom-scrollbar {
   scrollbar-width: thin;
   scrollbar-color: var(--surface) var(--surface);
+}
+
+@media (max-width: 1024px) {
+  body {
+    font-size: 11pt;
+  }
+
+  h1 {
+    font-size: 24pt;
+  }
+
+  h2 {
+    font-size: 18pt;
+  }
+
+  h3 {
+    font-size: 16pt;
+  }
+}
+
+@media (max-width: 768px) {
+  body {
+    font-size: 9pt;
+  }
+
+  main {
+    padding: 4rem 0;
+    padding-right: 2rem;
+  }
+
+  aside {
+    padding: 4rem;
+  }
+
+  h1 {
+    font-size: 20pt;
+  }
+
+  h2 {
+    font-size: 16pt;
+  }
+
+  h3 {
+    font-size: 14pt;
+  }
 }

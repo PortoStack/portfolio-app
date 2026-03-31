@@ -15,7 +15,7 @@ export const AboutSkelaton = () => {
       {[...Array(count)].map((_, i) => (
         <div
           key={i}
-          className="animate-pulse h-5 bg-gray-50/10 rounded flex"
+          className="animate-pulse h-4 lg:h-5 bg-gray-50/10 rounded flex"
           style={{
             width:
               i === 0 ||

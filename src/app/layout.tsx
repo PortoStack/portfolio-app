@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import Providers from "./providers";
 import PageTransition from "@/components/PageTranstion";
 import Sidebar from "@/components/Sidebar";
-import "./globals.css";
 import Footer from "@/components/Footer";
+import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Portofolio - PortoStack",
