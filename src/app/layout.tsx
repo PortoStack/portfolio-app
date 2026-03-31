@@ -3,6 +3,7 @@ import Providers from "./providers";
 import PageTransition from "@/components/PageTranstion";
 import Sidebar from "@/components/Sidebar";
 import "./globals.css";
+import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
   title: "Portofolio - PortoStack",
@@ -18,11 +19,12 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <Providers>
-          <div className="flex w-screen h-screen overflow-hidden bg-surface">
+          <div className="flex w-screen h-screen overflow-hidden bg-surface relative">
             <Sidebar />
             <PageTransition>
               <main className="py-24 pr-16 h-screen">{children}</main>
             </PageTransition>
+            <Footer />
           </div>
         </Providers>
       </body>
