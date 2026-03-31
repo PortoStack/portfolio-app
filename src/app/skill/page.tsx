@@ -20,12 +20,12 @@ export default function Skill() {
             {data?.map((skill, idx) => (
               <motion.div
                 key={skill.id}
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
                 transition={{
                   ease: "easeInOut",
                   duration: 0.5,
-                  delay: idx * 0.25,
+                  delay: idx * 0.05,
                 }}
               >
                 <h2 className="text-2xl">{skill.category}</h2>

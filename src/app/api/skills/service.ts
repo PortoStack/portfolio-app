@@ -27,8 +27,25 @@ export class SkillService {
   };
 
   public create = async (payload: CreateSkillSchameType) =>
-    await this.db.skills.create({
-      data: {
+    await this.db.skills.upsert({
+      where: { category: payload.category },
+      update: {
+        skill_technologies: {
+          create: payload.technologies.map((technology) => ({
+            technologies: {
+              connectOrCreate: {
+                where: { tech: technology.tech },
+                create: {
+                  id: uuidv7(),
+                  tech: technology.tech,
+                  icon: technology.icon,
+                },
+              },
+            },
+          })),
+        },
+      },
+      create: {
         id: uuidv7(),
         category: payload.category,
         skill_technologies: {

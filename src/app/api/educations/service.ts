@@ -9,7 +9,11 @@ export class EducationService {
   constructor(private db: PrismaClient) {}
 
   public getAll = async () => {
-    const educations = await this.db.educations.findMany();
+    const educations = await this.db.educations.findMany({
+      orderBy: {
+        started_at: "desc",
+      },
+    });
 
     return educations.map(({ started_at, ended_at, ...reset }) => ({
       ...reset,

@@ -44,8 +44,10 @@ export default function Sidebar() {
           <SidebarSkelaton />
         ) : (
           <div>
-            <h1 className="text-5xl">{profile?.title}</h1>
-            <h3 className="text-3xl">{profile?.name}</h3>
+            <div className="text-5xl max-[769px]:text-4xl">
+              {profile?.title}
+            </div>
+            <h3 className="text-3xl max-[769px]:text-2xl">{profile?.name}</h3>
           </div>
         )}
         <ul className="grid gap-6">
