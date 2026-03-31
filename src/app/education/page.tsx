@@ -2,7 +2,6 @@
 
 import { EducationSkelaton } from "@/components/Skelaton";
 import { useEducation } from "@/hook/useEducation";
-import dayjs from "dayjs";
 import { AnimatePresence, motion } from "framer-motion";
 
 export default function Education() {
